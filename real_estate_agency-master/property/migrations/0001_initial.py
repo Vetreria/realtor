@@ -4,12 +4,18 @@ from django.db import migrations, models
 import django.utils.timezone
 
 
+def set_new_bilding():
+        Flat.Objects.filter(construction_year__gte = 2005).update(new_building = True)
+
 class Migration(migrations.Migration):
 
     initial = True
 
     dependencies = [
     ]
+
+    
+
 
     operations = [
         migrations.CreateModel(
@@ -33,4 +39,7 @@ class Migration(migrations.Migration):
                 ('construction_year', models.IntegerField(blank=True, db_index=True, null=True, verbose_name='Год постройки здания')),
             ],
         ),
+        migrations.RunPython(set_new_bilding)
     ]
+
+

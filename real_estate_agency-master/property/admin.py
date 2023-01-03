@@ -9,7 +9,7 @@ class AuthorAdmin(admin.ModelAdmin):
     list_editable = ( 'price', 'new_building', 'construction_year', 'town')
     list_filter = ['new_building']
     raw_id_fields = ("likes",)
- 
+
 
     def __str__(self):
         return self.address

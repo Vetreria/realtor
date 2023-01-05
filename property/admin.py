@@ -4,7 +4,7 @@ from .models import Flat, Claim, Owner
 
 
 class OwnerFlatInline(admin.TabularInline):
-    model = Owner.owned_flats.through
+    model = Owner.flats.through
     raw_id_fields = ("owner", "flat")
 
 
@@ -30,7 +30,7 @@ class ClaimAdmin(admin.ModelAdmin):
 
 @admin.register(Owner)
 class OwnerAdmin(admin.ModelAdmin):
-    raw_id_fields = ['owned_flats']
+    raw_id_fields = ['flats']
 
  
  

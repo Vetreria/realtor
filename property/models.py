@@ -57,8 +57,8 @@ class Flat(models.Model):
 
 
 class Claim(models.Model):
-    user = models.ForeignKey(User, verbose_name='Пользователь:', related_name="user", on_delete=models.CASCADE)
-    flat = models.ForeignKey(Flat, verbose_name='Претензия по квартире:', related_name="flat", on_delete=models.CASCADE)
+    user = models.ForeignKey(User, verbose_name='Пользователь:', related_name="claim_user", on_delete=models.CASCADE)
+    flat = models.ForeignKey(Flat, verbose_name='Претензия по квартире:', related_name="claim_flat", on_delete=models.CASCADE)
     text = models.TextField('Текст претензии:')
 
 
@@ -66,7 +66,7 @@ class Owner(models.Model):
     name = models.CharField('ФИО владельца', max_length=200)
     phonenumber = models.CharField('Номер владельца', max_length=20, null=True)
     pure_phone = PhoneNumberField('Нормализованный номер владельца', blank=True)
-    flats = models.ManyToManyField(Flat, verbose_name='Квартиры в собственности', related_name='flats',
+    flats = models.ManyToManyField(Flat, verbose_name='Квартиры в собственности', related_name='owner_flats',
                                          blank=True)
     def __str__(self):
         return self.name
